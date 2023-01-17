@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgets_app/routes/routes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -8,13 +9,17 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Componentes en Flutter')),
       body: ListView.separated(
-        itemCount: 10,
+        itemCount: Routes.menuOptions.length - 1,
         separatorBuilder: (_, __) => const Divider(),
         itemBuilder: (context, index) => ListTile(
-          leading: Icon(Icons.access_time),
-          title: Text('Ruta'),
-          trailing: Icon(Icons.arrow_forward_outlined),
-          onTap: () => Navigator.pushNamed(context, 'listview1'),
+          leading: Icon(
+            Routes.menuOptions[index + 1].icon,
+            color: Colors.indigo,
+          ),
+          title: Text(Routes.menuOptions[index + 1].name),
+          trailing: const Icon(Icons.arrow_forward_outlined),
+          onTap: () =>
+              Navigator.pushNamed(context, Routes.menuOptions[index + 1].route),
         ),
       ),
     );
